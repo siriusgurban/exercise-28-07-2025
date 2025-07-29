@@ -140,35 +140,39 @@ minMaxAve(1, 2, 3);
 let arrMix = [-1, 2, 5, 7, 12, 2, 7];
 
 function repeatNum(arr) {
-  console.log();
+  let moda = arr[0];
 
-  let aaaa = []
+  let repeat = 0;
 
-  let newArr = arr.forEach((item, index) => {
-    for (let i = 0; i < arr.length; i++) {
-      if (item === arr[i]) {
-
-        aaaa[item]
-        console.log(item, "item");
-      }else{
-        aaaa.pop(arr[i])
-      }
+  arr.forEach((num, index) => {
+    if (arr.filter((item) => item == num).length > repeat) {
+      moda = num;
+      repeat = arr.filter((item) => item == num).length;
     }
   });
-  console.log(aaaa, "newArr");
+
+  console.log(`moda: ${moda} ${repeat} defe tekrarlanir`);
 }
 
 repeatNum(arrMix);
 
 // const date = new Date();
 
+
+// Teo's exercise for 30 Juli 2025 09:00
+
 const tomorrowDate = new Date("07-30-2025 09:00");
 
-function calcFuture(date) {
-  let hours = date / 1000 / 60 / 60 / 24;
-  let minutes = (date / 1000 / 60 / 60) % 24;
-  let seconds = (date / 1000 / 60) % 60;
-  console.log(`${hours}, Minutes: ${minutes}, Seconds: ${seconds}`);
+function calcFuture(dat) {
+  let now = new Date();
+  let date = dat - now;
+  let days = Math.floor(date / 1000 / 60 / 60 / 24);
+  let hours = Math.floor((date / 1000 / 60 / 60) % 24);
+  let minutes = Math.floor((date / 1000 / 60) % 60);
+  let seconds = Math.floor((date / 1000) % 60);
+  console.log(
+    `Days: ${days}, Hours: ${hours}, Minutes: ${minutes}, Seconds: ${seconds}`
+  );
 }
 
 calcFuture(tomorrowDate);
